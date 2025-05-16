@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rockertseat - React.js - Fundamentos </title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    function Alert1(){
+
+      function handleAlertClick(){
+        alert('Alerta alertado')
+      }
+
+      return(
+        <button type="button" onClick={handleAlertClick} >Mostrar Alerta</button>
+      )
+    }
+
+    function Alert2(){
+
+      function handleAlertClick(msg){
+        alert(msg)
+      }
+
+      return(
+        <button onClick={() => handleAlertClick("Alerta Alertado")}>
+          Mostrar Alerta com Parametro
+        </button>
+      )
+    }
+
+    function Alert3(){
+
+      function handleAlertClick(event){
+        alert(event.target.previousSibling.value); // Dará print no alert, pegando o que está escrito no INPUT. Porém, está com o OnClick no button
+      }
+
+      function handleInputChange(event){
+        console.log (event.target.value); // Dará print no console, pegando o que está escrito no INPUT. Estando com o ONCHANGE no input
+      }
+
+      return(
+        <div>
+          <input type="text" placeholder="Digite algo..." onChange={handleInputChange} /> 
+          <button onClick={handleAlertClick}>
+            Mostrar Alerta do Campo de Texto
+          </button>
+        </div>
+      )
+    }
+
+    function App(){
+      return (
+        <main>
+          <Alert1></Alert1>
+          <Alert2></Alert2>
+          <Alert3></Alert3>
+        </main>
+    ) }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <App/>
+    )
+
+  </script>
+</body>
+</html>
